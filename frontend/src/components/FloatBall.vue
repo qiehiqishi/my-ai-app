@@ -1,13 +1,13 @@
 <template>
   <div class="float-ball" @click="showGameDialog = true">
-    <van-icon name="game" size="24" />
+   <span>🎮</span>
   </div>
 
   <!-- 游戏列表弹窗 -->
   <van-popup
     v-model:show="showGameDialog"
     position="bottom"
-    :style="{ height: '40%', borderRadius: '16px 16px 0 0' }"
+    :style="{ height: '50%', borderRadius: '16px 16px 0 0' }"
   >
     <div class="game-dialog">
       <div class="dialog-header">
@@ -91,6 +91,11 @@ const startGame = (game: any) => {
   z-index: 999;
   transition: all 0.3s ease;
   color: white;
+  font-size: 24px;
+  span{
+    position: relative;
+    top: -4px;
+  }
 }
 
 .float-ball:hover {
