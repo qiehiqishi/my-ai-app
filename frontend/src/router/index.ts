@@ -5,6 +5,12 @@ import Prompts from '@/views/Prompts.vue'
 import Documents from '@/views/Documents.vue'
 import Settings from '@/views/Settings.vue'
 
+// 游戏页面
+import Snake from '@/views/games/Snake.vue'
+import Gomoku from '@/views/games/Gomoku.vue'
+import Tetris from '@/views/games/Tetris.vue'
+import Minesweeper from '@/views/games/Minesweeper.vue'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -35,6 +41,31 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Settings',
     component: Settings,
     meta: { title: '设置' }
+  },
+  // 游戏路由
+  {
+    path: '/games/snake',
+    name: 'Snake',
+    component: Snake,
+    meta: { title: '贪吃蛇' }
+  },
+  {
+    path: '/games/gomoku',
+    name: 'Gomoku',
+    component: Gomoku,
+    meta: { title: '五子棋' }
+  },
+  {
+    path: '/games/tetris',
+    name: 'Tetris',
+    component: Tetris,
+    meta: { title: '俄罗斯方块' }
+  },
+  {
+    path: '/games/minesweeper',
+    name: 'Minesweeper',
+    component: Minesweeper,
+    meta: { title: '扫雷' }
   }
 ]
 

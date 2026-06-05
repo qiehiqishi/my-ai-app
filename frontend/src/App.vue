@@ -1,11 +1,22 @@
 <template>
   <div id="app">
     <router-view />
+    <!-- 悬浮球（游戏入口） -->
+    <FloatBall v-if="showFloatBall" />
   </div>
 </template>
 
 <script setup lang="ts">
-// App 根组件
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import FloatBall from '@/components/FloatBall.vue'
+
+const route = useRoute()
+
+// 在游戏页面隐藏悬浮球
+const showFloatBall = computed(() => {
+  return !route.path.startsWith('/games/')
+})
 </script>
 
 <style>
