@@ -176,12 +176,30 @@ const handleFileUpload = async (event: Event) => {
   })
 
   try {
-    const formData = new FormData()
-    formData.append('file', file)
+    // 读取文件内容并转为 base64
+    const reader = new FileReader()
+    const content = await new Promise<string>((resolve, reject) => {
+      reader.onload = () => {
+        const arrayBuffer = reader.result as ArrayBuffer
+        const base64 = btoa(
+          new Uint8Array(arrayBuffer)
+            .reduce((data, byte) => data + String.fromCharCode(byte), '')
+        )
+        resolve(base64)
+      }
+      reader.onerror = reject
+      reader.readAsArrayBuffer(file)
+    })
 
+    // 发送到 API
     const response = await fetch('/api/documents/upload', {
       method: 'POST',
-      body: formData
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        filename: file.name,
+        content: content,
+        category: 'markdown'
+      })
     })
 
     const result = await response.json()
